@@ -50,7 +50,7 @@ app.get('/api/persons/:id', (request, response) => {
         person = `
             <p>
             Person does not exist. Total number of people is ${persons.length}</p>`
-        response.send(person)
+        return response.send(person)
     }
 
     response.json(person)
