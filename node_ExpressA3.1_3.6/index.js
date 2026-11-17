@@ -56,6 +56,14 @@ app.get('/api/persons/:id', (request, response) => {
     response.json(person)
 })
 
+app.get('/', (request, response) => {
+    response.sendFile(__dirname + '/index.html')
+})
+
+app.get('/', (request, response) => {
+    response.sendFile(__dirname + '/js/main.js')
+})
+
 app.delete('/api/persons/:id', (request, response) => {
     const id = request.params.id
     persons = persons.filter(person => person.id !== id)
@@ -81,6 +89,7 @@ app.post('/api/persons', (request, response) => {
     response.status(201).json(person)
 
 })
+
 
 
     
