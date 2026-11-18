@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 app.use(express.json())
 
+
 let persons = [
     {
         "id": "1",
@@ -60,8 +61,11 @@ app.get('/', (request, response) => {
     response.sendFile(__dirname + '/index.html')
 })
 
-app.get('/', (request, response) => {
+app.get('/js/main.js', (request, response) => {
     response.sendFile(__dirname + '/js/main.js')
+})
+app.get('/css/style.css', (request, response) => {
+    response.sendFile(__dirname + '/css/style.css')
 })
 
 app.delete('/api/persons/:id', (request, response) => {
