@@ -76,22 +76,32 @@ app.delete('/api/persons/:id', (request, response) => {
 })
 
 app.post('/api/persons', (request, response) => {
-    
-    const name = request.body.name
-    const number = request.body.number
-    class Person {
+    const dupeTest = persons.filter(person => person.name == request.body.name && person.number == request.body.number)
+
+    console.log(`Dupe Locator:`, dupeTest.length)
+
+    if (dupeTest.length === 0){
+        const name = request.body.name
+        const number = request.body.number
+        class Person {
         
         constructor(id, name, number){
             this.id = id
             this.name = name
             this.number = number
         }
-    }
-    const person = new Person(String(nextId), name, number)
-    nextId ++
-    persons = persons.concat(person)
-    response.status(201).json(person)
+        }
+        const person = new Person(String(nextId), name, number)
+        nextId ++
+    
+        persons = persons.concat(person)
+        response.status(201).json(person)
 
+    } else {
+        response.status(409).json({status: 409});
+        dupeTest = []
+    }
+    
 })
 
 
