@@ -34,7 +34,7 @@ button.addEventListener('click', ()=>{
         ${new Date()}<br>
         `
 
-        console.log(`* * contact added * *
+        console.log(`* * contact added * * *
     -
     name: ${inputName.value}
     number: ${inputNum.value}
