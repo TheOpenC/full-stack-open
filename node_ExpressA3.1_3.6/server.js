@@ -1,8 +1,14 @@
 const express = require('express')
+const morgan = require('morgan')
+const postLogger = morgan('combined')
 
 const app = express()
-app.use(express.json())
 
+
+app.use(express.json())
+// logger must be called after the json parser as they execute in the order they're encountered.
+app.use(
+    morgan('tiny'))
 
 let persons = [
     {
@@ -96,6 +102,7 @@ app.post('/api/persons', (request, response) => {
     
         persons = persons.concat(person)
         response.status(201).json(person)
+
 
     } else {
         response.status(409).json({status: 409});
